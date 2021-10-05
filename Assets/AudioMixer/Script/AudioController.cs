@@ -12,9 +12,9 @@ public class AudioController : MonoBehaviour
     //どのボタンを押したときに設定画面を出すか
     [SerializeField] string m_getButtonName = " ";
     //ゲーム開始時の音量
-    float m_startVolumeMaster = -15f;
-    float m_startVolumeBGM = -15f;
-    float m_startVolumeSE = -15f;
+    static float m_startVolumeMaster = -15f;
+    static float m_startVolumeBGM = -15f;
+    static float m_startVolumeSE = -15f;
     //ゲームシーンにこのオブジェクトが存在するかを判定するもの
     public static AudioController m_instance;
 
