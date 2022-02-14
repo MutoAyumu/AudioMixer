@@ -6,57 +6,57 @@ using UnityEngine.Audio;
 public class AudioController : MonoBehaviour
 {
     //音量設定を行うCanvasを入れる
-    [SerializeField] GameObject m_canvas = default;
+    [SerializeField] GameObject _canvas = default;
     //AudioMixerを設定
-    [SerializeField] AudioMixer m_audioMixer = default;
+    [SerializeField] AudioMixer _audioMixer = default;
     //どのボタンを押したときに設定画面を出すか
-    [SerializeField] string m_getButtonName = " ";
+    [SerializeField] string _getButtonName = " ";
     //ゲーム開始時の音量
-    float m_startVolumeMaster = -15f;
-    float m_startVolumeBGM = -15f;
-    float m_startVolumeSE = -15f;
+    float _startVolumeMaster = -15f;
+    float _startVolumeBGM = -15f;
+    float _startVolumeSE = -15f;
     //ゲームシーンにこのオブジェクトが存在するかを判定するもの
-    public static AudioController m_instance;
+    public static AudioController _instance;
 
     private void Awake()
     {
-        if (m_instance != null)
+        if (_instance != null)
         {
             Destroy(this.gameObject);
         }
         else
         {
             DontDestroyOnLoad(this.gameObject);
-            m_instance = this;
+            _instance = this;
         }
     }
     private void Start()
     {
-        SetMaster(m_startVolumeMaster);
-        SetBGM(m_startVolumeBGM);
-        SetSE(m_startVolumeSE);
+        SetMaster(_startVolumeMaster);
+        SetBGM(_startVolumeBGM);
+        SetSE(_startVolumeSE);
     }
 
     private void Update()
     {
-        if (Input.GetButtonDown(m_getButtonName))
+        if (Input.GetButtonDown(_getButtonName))
         {
-            m_canvas.gameObject.SetActive(!m_canvas.activeSelf);
+            _canvas.gameObject.SetActive(!_canvas.activeSelf);
         }
     }
     public void SetMaster(float volume)
     {
-        m_audioMixer.SetFloat("Master", volume);
-        m_startVolumeMaster = volume;
+        _audioMixer.SetFloat("Master", volume);
+        _startVolumeMaster = volume;
     }
     public void SetBGM(float volume)
     {
-        m_audioMixer.SetFloat("BGM", volume);
-        m_startVolumeBGM = volume;
+        _audioMixer.SetFloat("BGM", volume);
+        _startVolumeBGM = volume;
     }
     public void SetSE(float volume)
     {
-        m_audioMixer.SetFloat("SE", volume);
-        m_startVolumeSE = volume;
+        _audioMixer.SetFloat("SE", volume);
+        _startVolumeSE = volume;
     }
 }
